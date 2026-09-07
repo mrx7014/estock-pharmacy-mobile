@@ -17,3 +17,7 @@
 - [x] Add a desktop sidebar and mobile navigation shell for the web version
 - [x] Redesign dashboard, inventory, sales, purchasing, operations, and settings as web pages
 - [x] Validate responsive desktop/mobile layouts and web interactions
+
+- [x] Replace the Expo Go project entry point with a direct browser-first website entry
+- [x] Verify the final link opens the eStock interface directly in a web browser
+- [ ] Create a new checkpoint for the browser-first website delivery
