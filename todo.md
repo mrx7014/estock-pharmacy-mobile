@@ -12,3 +12,8 @@
 - [x] Generate and apply custom eStock Pharmacy branding assets
 - [x] Run TypeScript, lint, and unit tests; verify critical navigation and state flows
 - [ ] Save the final project checkpoint and provide the project version to the user
+
+- [x] Convert the mobile-first eStock experience into a responsive web dashboard
+- [x] Add a desktop sidebar and mobile navigation shell for the web version
+- [x] Redesign dashboard, inventory, sales, purchasing, operations, and settings as web pages
+- [x] Validate responsive desktop/mobile layouts and web interactions

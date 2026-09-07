@@ -1,4 +1,4 @@
-import { View, type ViewProps } from "react-native";
+import { Platform, StyleSheet, View, useWindowDimensions, type ViewProps } from "react-native";
 import { SafeAreaView, type Edge } from "react-native-safe-area-context";
 
 import { cn } from "@/lib/utils";
@@ -47,6 +47,8 @@ export function ScreenContainer({
   style,
   ...props
 }: ScreenContainerProps) {
+  const { width } = useWindowDimensions();
+  const desktopWeb = Platform.OS === "web" && width >= 900;
   return (
     <View
       className={cn(
@@ -61,8 +63,12 @@ export function ScreenContainer({
         className={cn("flex-1", safeAreaClassName)}
         style={style}
       >
-        <View className={cn("flex-1", className)}>{children}</View>
+        <View className={cn("flex-1", className)} style={desktopWeb ? styles.webContent : undefined}>{children}</View>
       </SafeAreaView>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  webContent: { flex: 1, marginLeft: 224, paddingHorizontal: 34, paddingTop: 8, alignSelf: "stretch" },
+});
