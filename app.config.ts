@@ -28,7 +28,7 @@ const schemeFromBundleId = `manus${timestamp}`;
 
 const env = {
   // App branding - update these values directly (do not use env vars)
-  appName: "eStock Pharmacy",
+  appName: "صيدلية إي ستوك",
   appSlug: "estock-pharmacy-mobile",
   // S3 URL of the app logo - set this to the URL returned by generate_image when creating custom logo
   // Leave empty to use the default icon from assets/images/icon.png
@@ -38,7 +38,14 @@ const env = {
   androidPackage: bundleId,
 };
 
-const config: ExpoConfig = {
+type ExtendedExpoConfig = ExpoConfig & {
+  android?: ExpoConfig["android"] & {
+    enableMinifyInReleaseBuilds?: boolean;
+    enableShrinkResourcesInReleaseBuilds?: boolean;
+  };
+};
+
+const config: ExtendedExpoConfig = {
   name: env.appName,
   slug: env.appSlug,
   version: "1.0.0",
@@ -62,6 +69,8 @@ const config: ExpoConfig = {
       monochromeImage: "./assets/images/android-icon-monochrome.png",
     },
     edgeToEdgeEnabled: true,
+    enableMinifyInReleaseBuilds: true,
+    enableShrinkResourcesInReleaseBuilds: true,
     predictiveBackGestureEnabled: false,
     package: env.androidPackage,
     permissions: ["POST_NOTIFICATIONS"],
@@ -115,7 +124,9 @@ const config: ExpoConfig = {
       "expo-build-properties",
       {
         android: {
-          buildArchs: ["armeabi-v7a", "arm64-v8a"],
+          // Modern Android devices are 64-bit; dropping the legacy ABI keeps
+          // the standalone APK substantially smaller.
+          buildArchs: ["arm64-v8a"],
           minSdkVersion: 24,
         },
       },

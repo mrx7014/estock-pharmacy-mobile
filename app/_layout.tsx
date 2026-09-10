@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import "react-native-reanimated";
-import { Platform } from "react-native";
+import { I18nManager, Platform } from "react-native";
 import "@/lib/_core/nativewind-pressable";
 import { ThemeProvider } from "@/lib/theme-provider";
 import {
@@ -35,6 +35,12 @@ export default function RootLayout() {
 
   // Initialize Manus runtime for cookie injection from parent container
   useEffect(() => {
+    // The product is Arabic-first. Force RTL once at startup so navigation,
+    // forms, cards, and tab labels all follow the same reading direction.
+    if (!I18nManager.isRTL) {
+      I18nManager.allowRTL(true);
+      I18nManager.forceRTL(true);
+    }
     initManusRuntime();
   }, []);
 

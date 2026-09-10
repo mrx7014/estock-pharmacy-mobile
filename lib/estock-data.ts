@@ -34,8 +34,8 @@ export type Purchase = {
 };
 
 export const branches = [
-  { id: 1, name: "Main Branch", sourceNameAvailable: false },
-  { id: 2, name: "Second Branch", sourceNameAvailable: false },
+  { id: 1, name: "الفرع الرئيسي", sourceNameAvailable: false },
+  { id: 2, name: "الفرع الثاني", sourceNameAvailable: false },
 ];
 
 export const products: Product[] = [

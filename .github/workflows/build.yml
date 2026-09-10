@@ -45,7 +45,7 @@ jobs:
       - name: Build standalone release APK
         run: |
           cd android
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleRelease --no-daemon --max-workers=2
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4

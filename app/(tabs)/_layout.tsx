@@ -6,22 +6,22 @@ import { IconSymbol } from "@/components/ui/icon-symbol";
 import { useColors } from "@/hooks/use-colors";
 
 const navItems = [
-  { label: "Overview", path: "/", icon: "house.fill" as const },
-  { label: "Inventory", path: "/inventory", icon: "house.fill" as const },
-  { label: "Sales", path: "/sales", icon: "chart.bar.fill" as const },
-  { label: "Purchasing", path: "/purchasing", icon: "cart.fill" as const },
-  { label: "Operations", path: "/operations", icon: "bolt.fill" as const },
-  { label: "Settings", path: "/settings", icon: "gearshape.fill" as const },
+  { label: "نظرة عامة", path: "/", icon: "house.fill" as const },
+  { label: "المخزون", path: "/inventory", icon: "house.fill" as const },
+  { label: "المبيعات", path: "/sales", icon: "chart.bar.fill" as const },
+  { label: "المشتريات", path: "/purchasing", icon: "cart.fill" as const },
+  { label: "التنبيهات", path: "/operations", icon: "bolt.fill" as const },
+  { label: "الإعدادات", path: "/settings", icon: "gearshape.fill" as const },
 ];
 
 function WebSidebar() {
   const colors = useColors();
   const pathname = usePathname();
   return <View style={[styles.sidebar, { backgroundColor: colors.surface, borderRightColor: colors.border }]}>
-    <View style={styles.brand}><View style={[styles.brandMark, { backgroundColor: colors.primary }]}><IconSymbol name="house.fill" size={18} color="#fff" /></View><View><Text style={[styles.brandName, { color: colors.foreground }]}>eStock</Text><Text style={[styles.brandSub, { color: colors.success }]}>PHARMACY OS</Text></View></View>
-    <Text style={[styles.navCaption, { color: colors.muted }]}>WORKSPACE</Text>
+    <View style={styles.brand}><View style={[styles.brandMark, { backgroundColor: colors.primary }]}><IconSymbol name="house.fill" size={18} color="#fff" /></View><View><Text style={[styles.brandName, { color: colors.foreground }]}>إي ستوك</Text><Text style={[styles.brandSub, { color: colors.success }]}>إدارة الصيدلية</Text></View></View>
+    <Text style={[styles.navCaption, { color: colors.muted }]}>مساحة العمل</Text>
     <View style={styles.navList}>{navItems.map((item) => { const active = item.path === "/" ? pathname === "/" : pathname.startsWith(item.path); return <Pressable key={item.path} onPress={() => router.push(item.path as never)} style={({ pressed }) => [styles.navItem, active && { backgroundColor: "#DDF4EE" }, pressed && { opacity: 0.7 }]}><IconSymbol name={item.icon} size={20} color={active ? colors.primary : colors.muted} /><Text style={[styles.navText, { color: active ? colors.primary : colors.muted }]}>{item.label}</Text></Pressable>; })}</View>
-    <View style={[styles.sideFooter, { borderTopColor: colors.border }]}><View style={[styles.statusDot, { backgroundColor: colors.success }]} /><View><Text style={[styles.footerTitle, { color: colors.foreground }]}>Local snapshot</Text><Text style={[styles.footerMeta, { color: colors.muted }]}>Synced and ready</Text></View></View>
+    <View style={[styles.sideFooter, { borderTopColor: colors.border }]}><View style={[styles.statusDot, { backgroundColor: colors.success }]} /><View><Text style={[styles.footerTitle, { color: colors.foreground }]}>نسخة محلية</Text><Text style={[styles.footerMeta, { color: colors.muted }]}>متزامنة وجاهزة</Text></View></View>
   </View>;
 }
 
@@ -32,12 +32,12 @@ export default function TabLayout() {
   const desktopWeb = Platform.OS === "web" && width >= 900;
   const bottomPadding = Platform.OS === "web" ? 12 : Math.max(insets.bottom, 8);
   return <View style={{ flex: 1 }}>{desktopWeb && <WebSidebar />}<Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.success, tabBarInactiveTintColor: colors.muted, tabBarButton: HapticTab, tabBarStyle: desktopWeb ? { display: "none" } : { paddingTop: 7, paddingBottom: bottomPadding, height: 56 + bottomPadding, backgroundColor: colors.surface, borderTopColor: colors.border, borderTopWidth: 1 } }}>
-    <Tabs.Screen name="index" options={{ title: "Overview", tabBarIcon: ({ color }) => <IconSymbol name="house.fill" size={22} color={color} /> }} />
-    <Tabs.Screen name="inventory" options={{ title: "Inventory", tabBarIcon: ({ color }) => <IconSymbol name="house.fill" size={22} color={color} /> }} />
-    <Tabs.Screen name="sales" options={{ title: "Sales", tabBarIcon: ({ color }) => <IconSymbol name="chart.bar.fill" size={22} color={color} /> }} />
-    <Tabs.Screen name="purchasing" options={{ title: "Purchasing", tabBarIcon: ({ color }) => <IconSymbol name="cart.fill" size={22} color={color} /> }} />
-    <Tabs.Screen name="operations" options={{ title: "Operations", tabBarIcon: ({ color }) => <IconSymbol name="bolt.fill" size={22} color={color} /> }} />
-    <Tabs.Screen name="settings" options={{ title: "Settings", tabBarIcon: ({ color }) => <IconSymbol name="gearshape.fill" size={22} color={color} /> }} />
+    <Tabs.Screen name="index" options={{ title: "نظرة عامة", tabBarIcon: ({ color }) => <IconSymbol name="house.fill" size={22} color={color} /> }} />
+    <Tabs.Screen name="inventory" options={{ title: "المخزون", tabBarIcon: ({ color }) => <IconSymbol name="house.fill" size={22} color={color} /> }} />
+    <Tabs.Screen name="sales" options={{ title: "المبيعات", tabBarIcon: ({ color }) => <IconSymbol name="chart.bar.fill" size={22} color={color} /> }} />
+    <Tabs.Screen name="purchasing" options={{ title: "المشتريات", tabBarIcon: ({ color }) => <IconSymbol name="cart.fill" size={22} color={color} /> }} />
+    <Tabs.Screen name="operations" options={{ title: "التنبيهات", tabBarIcon: ({ color }) => <IconSymbol name="bolt.fill" size={22} color={color} /> }} />
+    <Tabs.Screen name="settings" options={{ title: "الإعدادات", tabBarIcon: ({ color }) => <IconSymbol name="gearshape.fill" size={22} color={color} /> }} />
   </Tabs></View>;
 }
 
