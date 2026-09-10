@@ -40,13 +40,15 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x android/gradlew
 
-      - name: Build debug APK
+      # Debug APK expects a Metro development server. Build Release so the
+      # JavaScript bundle is embedded and the installed APK starts offline.
+      - name: Build standalone release APK
         run: |
           cd android
-          ./gradlew assembleDebug --no-daemon
+          ./gradlew assembleRelease --no-daemon
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug-apk
-          path: android/app/build/outputs/apk/debug/*.apk
+          name: app-release-apk
+          path: android/app/build/outputs/apk/release/*.apk
